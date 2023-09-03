@@ -8,6 +8,8 @@ const Body = () => {
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
 
+    // Whenever state variable update, react triggers a reconciliation cycle(re-render the component)
+
     useEffect( () => {
         fetchData();
     }, []);
