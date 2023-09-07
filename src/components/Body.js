@@ -22,8 +22,8 @@ const Body = () => {
 
         const json = await data.json();
         console.log(json);
-        setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
     return listOfRestaurants?.length === 0 ? (
@@ -56,7 +56,7 @@ const Body = () => {
             </div>
             <div className="res-conatainer">
                 {
-                    filteredRestaurant.map((restaurant) => {
+                    filteredRestaurant?.map((restaurant) => {
                         return <Link key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}>
                                     <RestaurantCard resData={restaurant} />
                                 </Link>
