@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { WithPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -8,6 +8,8 @@ const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
+
+    console.log("listOfRestaurants", listOfRestaurants);
 
     // Whenever state variable update, react triggers a reconciliation cycle(re-render the component)
 
@@ -67,9 +69,16 @@ const Body = () => {
             <div className="res-conatainer">
                 {
                     filteredRestaurant?.map((restaurant) => {
-                        return <Link key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}>
-                                    <RestaurantCard resData={restaurant} />
+                        return (
+                            <>
+                                <Link key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}>
+                                {/* <RestaurantCard resData={restaurant} /> */}
+                                {
+                                    restaurant?.info ? (<WithPromotedLabel resData={restaurant} />) : (<RestaurantCard resData={restaurant} />)
+                                }
                                 </Link>
+                            </>
+                        )
                     })
                 }
             </div>
